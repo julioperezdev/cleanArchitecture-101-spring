@@ -6,10 +6,10 @@ import example.infrastructure.repository.model.CourseEntity;
 public class ModelMapper {
 
     public CourseEntity toEntity(Course course){
-        return new CourseEntity(course.getId(), course.getName(), course.getPrice(), course.getCategory());
+        return new CourseEntity(course.getName(), course.getPrice(), course.getCategory());
     }
-    public Course toDto(CourseEntity courseEntity){
-        return new Course(courseEntity.getId(), courseEntity.getName(), courseEntity.getPrice(),courseEntity.getCategory());
+    public Course toDomainModel(CourseEntity courseEntity){
+        return new Course(courseEntity.getName(), courseEntity.getPrice(),courseEntity.getCategory());
     }
 
     /**

@@ -1,6 +1,7 @@
 package example.infrastructure.repository.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,7 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Builder
 public class CourseEntity {
     
     @Id
@@ -18,5 +20,10 @@ public class CourseEntity {
     private String name;
     private Long price;
     private String category;
-    
+
+    public CourseEntity(String name, Long price, String category) {
+        this.name = name;
+        this.price = price;
+        this.category = category;
+    }
 }

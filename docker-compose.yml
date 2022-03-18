@@ -1,0 +1,38 @@
+services:
+  postgres-cleanArchitecture-101-spring:
+    container_name: postgres-cleanArchitecture-101-spring
+    image: postgres
+    environment:
+      POSTGRES_USER: julioperezdev
+      POSTGRES_PASSWORD: password
+      PGDATA: /data/postgres
+    volumes:
+      - /Users/julio/developer/databases/cleanArchitecture-101-spring/postgre:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - postgres
+    restart: unless-stopped
+
+  pgadmin-cleanArchitecture-101-spring:
+    container_name: pgadmin-cleanArchitecture-101-spring
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+      - /Users/julio/developer/databases/cleanArchitecture-101-spring/pgadmin:/var/lib/pgadmin
+    ports:
+      - "5050:80"
+    networks:
+      - postgres
+    restart: unless-stopped
+
+networks:
+  postgres:
+    driver: bridge
+
+volumes:
+  postgres:
+  pgadmin:
