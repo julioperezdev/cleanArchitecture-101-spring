@@ -6,19 +6,22 @@ import example.core.course.model.CourseCategoryInput;
 import example.core.course.model.CoursePriceInput;
 import example.core.course.model.CourseRecordInput;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/course")
+@RequestMapping("api/v1/course")
 @AllArgsConstructor
+@Slf4j
 public class SpringCourseController {
 
     private final CourseEndpoints courseEndpoints;
 
-    @GetMapping("/getall")
+    @GetMapping
     public List<Course> getAllCourses(){
+        log.info("Executing get all courses");
         return courseEndpoints.getAllCourses();
     }
 
